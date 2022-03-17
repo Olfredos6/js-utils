@@ -61,9 +61,9 @@ const utils = {
         formData.forEach((value, key) => {
             if (!isNaN(value)) {
                 if (value.indexOf(".")) value = parseFloat(value)
-                if (value='on') value = true
                 else { value = parseInt(value) }
             }
+            if (value='on') value = true
             jsonData[key] = value
         })
         return jsonData
