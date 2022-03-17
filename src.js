@@ -63,7 +63,7 @@ const utils = {
                 if (value.indexOf(".")) value = parseFloat(value)
                 else { value = parseInt(value) }
             }
-            if (value='on') value = true
+            if (value=='on') value = true
             jsonData[key] = value
         })
         return jsonData
