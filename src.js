@@ -70,10 +70,10 @@ const utils = {
         return jsonData
     },
 
-    btnLoad: async function (btn_id, _promise) {
+    btnLoad: async function (selector, _promise) {
         let button
         try {
-            button = document.querySelector(btn_id)
+            button = document.querySelector(selector)
             const temp_html = button.innerHTML
             button.innerHTML = this.SPINNER
 
