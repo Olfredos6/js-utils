@@ -71,7 +71,7 @@ const utils = {
     },
 
     btnLoad: async function (selector, _promise) {
-        let button
+        let button, temp_html
         try {
             button = document.querySelector(selector)
             const temp_html = button.innerHTML
