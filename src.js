@@ -1,4 +1,5 @@
 const utils = {
+    SPINNER:`<div class="spinner-border text-warning" role="status"></div>`,
     numberToReadable: function (number) {
         /*
         Returns a human-readable string of a given number
@@ -67,6 +68,25 @@ const utils = {
             jsonData[key] = value
         })
         return jsonData
+    },
+
+    btnLoad: async function (btn_id, _promise) {
+        try {
+            const button = document.querySelector(btn_id)
+            const temp_html = button.innerHTML
+            button.innerHTML = this.SPINNER
+
+            button.disabled = true
+
+            await _promise.then(r => {
+                button.disabled = false
+                button.innerHTML = temp_html
+            })
+        }
+        catch (e) {
+            button.disabled = false
+            console.log("BTN-LOAD Error", e)
+        }
     }
 
 }
