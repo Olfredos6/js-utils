@@ -71,8 +71,9 @@ const utils = {
     },
 
     btnLoad: async function (btn_id, _promise) {
+        let button
         try {
-            const button = document.querySelector(btn_id)
+            button = document.querySelector(btn_id)
             const temp_html = button.innerHTML
             button.innerHTML = this.SPINNER
 
