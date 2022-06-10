@@ -86,6 +86,7 @@ const utils = {
         }
         catch (e) {
             button.disabled = false
+            button.innerHTML = temp_html
             console.log("BTN-LOAD Error", e)
         }
     }
