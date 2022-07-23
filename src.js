@@ -89,6 +89,23 @@ const utils = {
             button.innerHTML = temp_html
             console.log("BTN-LOAD Error", e)
         }
+    },
+    
+    loadJS: function(url, implementationCode=function(){}, location){
+        // From https://stackoverflow.com/a/31374433/5253580
+        /* url is URL of external file, implementationCode is the code
+            to be called from the file, location is the location to 
+            insert the <script> element.
+               e.g: loadJS('yourcode.js', yourCodeToBeCalled, document.body);
+        */
+
+        var scriptTag = document.createElement('script');
+        scriptTag.src = url;
+
+        scriptTag.onload = implementationCode;
+        scriptTag.onreadystatechange = implementationCode;
+
+        location.appendChild(scriptTag);
     }
 
 }
