@@ -71,10 +71,11 @@ const utils = {
     },
 
     btnLoad: async function (selector, _promise) {
-        let button, temp_html
+        let button
+        let temp_html
         try {
             button = document.querySelector(selector)
-            const temp_html = button.innerHTML
+            temp_html = button.innerHTML
             button.innerHTML = this.SPINNER
 
             button.disabled = true
