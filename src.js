@@ -69,6 +69,12 @@ const utils = {
         })
         return jsonData
     },
+    
+    JSONToForm: function(from_name, data){
+        Object.keys(data).forEach(k=>{
+            document.querySelector(`[name='${from_name}']`).querySelector(`[name='${k}']`).value = data[k]
+        })
+    },
 
     btnLoad: async function (selector, _promise) {
         let button
