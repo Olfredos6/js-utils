@@ -57,15 +57,17 @@ const utils = {
         /*
           Returns a JS object built from a form frm_name using name attributes
         */
+        const text_types = ["color", "date", "datetime-local", "email", "hidden", "month", "password", "tel", "time", "url", "week", "text"]
         let formData = new FormData(document.querySelector(`[name=${form_name}]`))
         let jsonData = {}
         formData.forEach((value, key) => {
-            if (!isNaN(value)) {
+            input_type = document.querySelector(`[name=${form_name}]`).querySelector(`[name='${key}']`).type
+            if (text_types.indexOf("text") != -1) { jsonData[key] = value == '' ? null : value }
+            else if (value == 'on') value = true
+            else {
                 if (value.indexOf(".")) value = parseFloat(value)
                 else { value = parseInt(value) }
             }
-            if (value=='on') value = true
-            jsonData[key] = value
         })
         return jsonData
     },
