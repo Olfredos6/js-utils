@@ -1,5 +1,5 @@
 const utils = {
-    SPINNER:`<div class="spinner-border text-warning" role="status"></div>`,
+    SPINNER: `<div class="spinner-border text-warning" role="status"></div>`,
     numberToReadable: function (number) {
         /*
         Returns a human-readable string of a given number
@@ -52,7 +52,7 @@ const utils = {
         }
         return true;
     },
-    
+
     formToJSON: function (form_name) {
         /*
           Returns a JS object built from a form frm_name using name attributes
@@ -71,10 +71,22 @@ const utils = {
         })
         return jsonData
     },
-    
-    JSONToForm: function(from_name, data){
-        Object.keys(data).forEach(k=>{
-            document.querySelector(`[name='${from_name}']`).querySelector(`[name='${k}']`).value = data[k]
+
+    JSONToForm: function (from_name, data) {
+        let currentElement;
+        Object.keys(data).forEach(k => {
+            currentElement = document.querySelector(`[name='${from_name}']`).querySelector(`[name='${k}']`);
+            if (currentElement.type == 'radio') {
+                if (currentElement.id == data[k]) {
+                    currentElement.checked = true;
+                }
+            } else if (currentElement.type == 'checkbox') {
+                if (currentElement.name == data[k]) {
+                    currentElement.checked = true;
+                }
+            } else {
+                currentElement.value = data[k]
+            }
         })
     },
 
@@ -99,8 +111,8 @@ const utils = {
             console.log("BTN-LOAD Error", e)
         }
     },
-    
-    loadJS: function(url, implementationCode=function(){}, location){
+
+    loadJS: function (url, implementationCode = function () { }, location) {
         // From https://stackoverflow.com/a/31374433/5253580
         /* url is URL of external file, implementationCode is the code
             to be called from the file, location is the location to 
